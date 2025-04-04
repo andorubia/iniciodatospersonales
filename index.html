@@ -3,47 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Datos Personales</title>
     <script src="https://cdn.rawgit.com/jhuckaby/webcamjs/master/webcam.min.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #000;
-            color: #fff;
+            margin: 0;
+            overflow: hidden;
+            background-color: black;
         }
-        #camera {
-            width: 320px;
-            height: 240px;
-            margin: 20px;
+        #camera, #prevImage {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
-        img {
-            max-width: 100%;
-            height: auto;
+        #prevImage {
+            z-index: 1;
         }
     </style>
 </head>
 <body>
-    <h1>Datos Personales</h1>
-    <p>Gracias por participar. Tu alma está siendo registrada.</p>
-    
-    <!-- Aquí se mostrará la cámara -->
+    <!-- Imagen de la silueta del participante anterior -->
+    <img id="prevImage" src="default_image.jpg" alt="Silueta del participante anterior" />
+
+    <!-- Aquí se mostrará la cámara actual -->
     <div id="camera"></div>
-
-    <!-- Imagen del participante (se actualizará cuando se capture la foto) -->
-    <h3>Silueta del participante anterior:</h3>
-    <img id="imagenSilueta" src="default_image.jpg" alt="Silueta del participante anterior" />
-
-    <br>
-
-    <!-- Botón para finalizar y capturar la foto -->
-    <button id="captureButton">Finalizar</button>
 
     <script>
         // Inicializamos la cámara
         Webcam.set({
-            width: 320,
-            height: 240,
+            width: 1280,
+            height: 720,
             image_format: 'jpeg',
             jpeg_quality: 90
         });
@@ -52,27 +43,12 @@
         Webcam.attach('#camera');
 
         // Función para capturar la imagen cuando el usuario presiona "Finalizar"
-        document.getElementById('captureButton').onclick = function() {
+        window.onload = function() {
             Webcam.snap(function(data_uri) {
-                // Mostrar la imagen capturada
-                document.getElementById('imagenSilueta').src = data_uri;
-
-                // Subir la imagen a Google Drive o Dropbox (esto es solo un ejemplo)
-                uploadImage(data_uri);
+                // Reemplazamos la imagen previa con la nueva
+                document.getElementById('prevImage').src = data_uri;
             });
         };
-
-        // Función para simular la subida de la imagen (debes implementar esto para subirla a un servidor)
-        function uploadImage(imageData) {
-            // Aquí iría el código para subir la imagen a un servidor o almacenamiento en la nube
-            // Supongamos que la imagen se sube correctamente y obtenemos un enlace
-            var imageUrl = "https://www.example.com/new_image.jpg"; // Reemplaza con el enlace real
-
-            // Actualizamos la imagen en la página web
-            document.getElementById('imagenSilueta').src = imageUrl;
-
-            // Simulación: puedes programar que el siguiente espectador vea esta nueva imagen
-        }
     </script>
 </body>
 </html>
