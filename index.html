@@ -42,11 +42,15 @@
         // Adjuntamos la cámara al div con id="camera"
         Webcam.attach('#camera');
 
-        // Función para capturar la imagen cuando el usuario presiona "Finalizar"
+        // Esperamos a que el usuario haya llegado desde el cuestionario de Tally
         window.onload = function() {
+            // Capturamos la foto una vez que el cuestionario se haya completado
             Webcam.snap(function(data_uri) {
                 // Reemplazamos la imagen previa con la nueva
                 document.getElementById('prevImage').src = data_uri;
+
+                // Aquí puedes agregar el código para subir la imagen si lo deseas
+                // uploadImage(data_uri);
             });
         };
     </script>
