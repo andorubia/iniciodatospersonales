@@ -25,7 +25,8 @@
 </head>
 <body>
     <!-- Imagen de la silueta del participante anterior -->
-    <img id="prevImage" src="default_image.jpg" alt="Silueta del participante anterior" />
+    <!-- Cambia el src a la URL de la imagen del participante anterior -->
+    <img id="prevImage" src="previous_image.jpg" alt="Silueta del participante anterior" />
 
     <!-- Aquí se mostrará la cámara actual -->
     <div id="camera"></div>
@@ -33,8 +34,8 @@
     <script>
         // Inicializamos la cámara
         Webcam.set({
-            width: 1920,
-            height: 1080,
+            width: 1280,
+            height: 720,
             image_format: 'jpeg',
             jpeg_quality: 90
         });
