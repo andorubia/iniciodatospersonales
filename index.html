@@ -25,8 +25,7 @@
 </head>
 <body>
     <!-- Imagen de la silueta del participante anterior -->
-    <!-- Cambia el src a la URL de la imagen del participante anterior -->
-    <img id="prevImage" src="previous_image.jpg" alt="Silueta del participante anterior" />
+    <img id="prevImage" src="https://tu-usuario.github.io/nombre-de-tu-repositorio/previous_image.jpg" alt="Silueta del participante anterior" />
 
     <!-- Aquí se mostrará la cámara actual -->
     <div id="camera"></div>
@@ -43,17 +42,18 @@
         // Adjuntamos la cámara al div con id="camera"
         Webcam.attach('#camera');
 
-        // Esperamos a que el usuario haya llegado desde el cuestionario de Tally
+        // Captura la imagen de manera automática cuando se carga la página
         window.onload = function() {
-            // Capturamos la foto una vez que el cuestionario se haya completado
+            // Captura la imagen automáticamente cuando la página se carga
             Webcam.snap(function(data_uri) {
-                // Reemplazamos la imagen previa con la nueva
+                // Reemplazamos la imagen previa con la nueva imagen del participante
                 document.getElementById('prevImage').src = data_uri;
 
-                // Aquí puedes agregar el código para subir la imagen si lo deseas
+                // Aquí puedes agregar código para subir la imagen a un servidor, si lo deseas.
                 // uploadImage(data_uri);
             });
         };
     </script>
 </body>
 </html>
+
