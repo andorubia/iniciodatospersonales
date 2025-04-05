@@ -30,9 +30,6 @@
     <!-- Aquí se mostrará la cámara actual -->
     <div id="camera"></div>
 
-    <!-- Audio que se reproducirá automáticamente -->
-    <audio id="inicioAudio" src="reflexion_mp3.mp3" preload="auto"></audio>
-
     <script>
         // Inicializamos la cámara
         Webcam.set({
@@ -45,24 +42,17 @@
         // Adjuntamos la cámara al div con id="camera"
         Webcam.attach('#camera');
 
-        // Captura la imagen y reproduce audio al cargar la página
+        // Captura la imagen de manera automática cuando se carga la página
         window.onload = function() {
-            // Reproducir el audio
-            const audio = document.getElementById('inicioAudio');
-            audio.play().catch(error => {
-                console.warn('Autoplay bloqueado por el navegador. Requiere interacción del usuario.');
-            });
-
-            // Captura la imagen automáticamente
+            // Captura la imagen automáticamente cuando la página se carga
             Webcam.snap(function(data_uri) {
                 // Reemplazamos la imagen previa con la nueva imagen del participante
                 document.getElementById('prevImage').src = data_uri;
 
-                // Aquí puedes agregar código para subir la imagen a un servidor
+                // Aquí puedes agregar código para subir la imagen a un servidor, si lo deseas.
+                // uploadImage(data_uri);
             });
         };
     </script>
 </body>
 </html>
-
-
